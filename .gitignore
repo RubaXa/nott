@@ -1,0 +1,17 @@
+# Ignore rules
+
+*.o
+*.so
+*.lo
+*.a
+a.out
+*.out
+.idea
+*.pyc
+*~
+\#*
+*.tmp
+*.bak
+tmp
+*.xmind
+tools/tornado
