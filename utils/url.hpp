@@ -38,22 +38,22 @@ namespace nott
 		};
 
 		/*
-			RFC 3986 section 2.2 Reserved Characters:
-			!, *, ', (, ), ;, :, @, &, =, +, $, , /, ?, #, [, ]
+		  RFC 3986 section 2.2 Reserved Characters:
+		  	!, *, ', (, ), ;, :, @, &, =, +, $, , /, ?, #, [, ]
 
-			%21, %23, %24, %26, %27, %28, %29, %2A, %2B, %2C,
-			%2F, %3A, %3B, %3D, %3F, %40, %5B, %5D
+		  	%21, %23, %24, %26, %27, %28, %29, %2A, %2B, %2C,
+		  	%2F, %3A, %3B, %3D, %3F, %40, %5B, %5D
 
-		RFC 3986 section 2.3 Unreserved Characters:
-			[aA-zZ0-9_.~-]
+		  RFC 3986 section 2.3 Unreserved Characters:
+		  	[aA-zZ0-9_.~-]
 
-		Common characters after percent-encoding (ASCII or UTF-8 based):
-			newline space ", %, -, . <, >, \, ^, _, `, {, |, }, ~
+		  Common characters after percent-encoding (ASCII or UTF-8 based):
+		  	newline space ", %, -, . <, >, \, ^, _, `, {, |, }, ~
 
-			%0A or %0D or %0D%0A, %20, %22, %25, %2D, %2E, %3C, %3E, %5C, %5E, %5F, %60, %7B, %7C, %7D, %7E
+		  	%0A or %0D or %0D%0A, %20, %22, %25, %2D, %2E, %3C, %3E, %5C, %5E, %5F, %60, %7B, %7C, %7D, %7E
 
-		application/x-www-form-encoded:
-			+
+		  application/x-www-form-encoded:
+		  	+
 		*/
 
 		/** url::encode */
