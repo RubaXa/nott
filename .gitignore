@@ -1,17 +1,25 @@
 # Ignore rules
 
+*~
+*#*
+._*
+\#*
+
 *.o
+*.a
 *.so
 *.lo
-*.a
+*.bak
+*.iml
 a.out
 *.out
 .idea
 *.pyc
-*~
-\#*
 *.tmp
 *.bak
 tmp
 *.xmind
+.project
+.settings
+.DS_Store
 tools/tornado
