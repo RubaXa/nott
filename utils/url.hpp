@@ -12,8 +12,8 @@
 * @date: 25/11/2012 0:00 PM
 */
 
-#ifndef __NOTT_TO_NUMERIC___
-#define __NOTT_TO_NUMERIC___
+#ifndef __NOTT_URL___
+#define __NOTT_URL___
 
 #include <string>
 #include <cctype>
