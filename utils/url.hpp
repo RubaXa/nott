@@ -4,23 +4,15 @@
 #define __NOTT_TO_NUMERIC___
 
 #include <string>
-#include <algorithm>
-//#include <cctype>
-
-#if __cplusplus < 201103L
-#endif
+#include <cctype>
 
 /*
-nott::api::url
-
-encode
-decode
-punycode
+TODO: punycode
 */
 
 namespace nott
 {
-	namespace api
+	namespace utils
 	{
 		class url final
 		{
@@ -32,6 +24,9 @@ namespace nott
 				std::string decode(const std::string &) const;
 
 			private:
+				url(const url&);
+				const url& operator=(const url&);
+
 				char unhex(const char &value) const noexcept {
 					return std::isdigit(value) ? value - '0' : std::tolower(value) - 'a' + 10;
 				}
