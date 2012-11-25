@@ -16,8 +16,8 @@
 * @date: 25/11/2012 21:05 PM
 */
 
-#ifndef __NOTT_TO_NOCOPYABLE__
-#define __NOTT_TO_NOCOPYABLE__
+#ifndef __NOTT_NOCOPYABLE__
+#define __NOTT_NOCOPYABLE__
 
 namespace nott
 {

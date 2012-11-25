@@ -12,8 +12,8 @@
 * @date: 25/11/2012 0:00 PM
 */
 
-#ifndef __NOTT_URL___
-#define __NOTT_URL___
+#ifndef __NOTT_URL__
+#define __NOTT_URL__
 
 #include <string>
 #include <cctype>
@@ -45,6 +45,8 @@ namespace nott
 		};
 
 		/*
+		  RFC1630, RFC1738, RFC2396
+
 		  RFC 3986 section 2.2 Reserved Characters:
 		  	!, *, ', (, ), ;, :, @, &, =, +, $, , /, ?, #, [, ]
 
