@@ -21,5 +21,6 @@ tmp
 *.xmind
 .project
 .settings
+.gitconfig
 .DS_Store
 tools/tornado
