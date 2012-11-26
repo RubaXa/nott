@@ -32,21 +32,21 @@ namespace nott
 		}
 
 		template <typename T, typename = void>
-			struct is_container : std::false_type { }
+			struct is_container : std::false_type { };
 		;
 
 		template <typename T>
-			struct is_container <std::valarray<T>> : std::true_type { }
+			struct is_container <std::valarray<T>> : std::true_type { };
 		;
 
 		template <std::intmax_t T>
-			struct is_container <std::ratio<T, T>> : std::true_type { }
+			struct is_container <std::ratio<T, T>> : std::true_type { };
 		;
 
 		template <typename T>
 			struct is_container
 			<T, typename details::is <typename T::const_iterator(T::*)() const, &T::begin, &T::end>::type> :
-			std::is_class<T> { }
+			std::is_class<T> { };
 		;
 	}
 }
