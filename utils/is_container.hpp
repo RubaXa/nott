@@ -38,11 +38,10 @@ namespace nott
 		template <typename T>
 			struct is_container <std::valarray<T>> : std::true_type { }
 		;
-/*
-		template <typename ...T>
-			struct is_container <std::ratio<T &&..., T &&...>> : std::true_type { }
+
+		template <std::intmax_t T>
+			struct is_container <std::ratio<T, T>> : std::true_type { }
 		;
-*/
 
 		template <typename T>
 			struct is_container
