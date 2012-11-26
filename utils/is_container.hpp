@@ -16,7 +16,6 @@
 
 #include <type_traits>
 #include <valarray>
-#include <ratio>
 
 namespace nott
 {
@@ -25,7 +24,8 @@ namespace nott
 		namespace details
 		{
 			template <typename T, T, T>
-				struct is {
+				struct is final
+				{
 					typedef void type;
 				}
 			;
@@ -33,14 +33,6 @@ namespace nott
 
 		template <typename T, typename = void>
 			struct is_container : std::false_type { };
-		;
-
-		template <typename T>
-			struct is_container <std::valarray<T>> : std::true_type { };
-		;
-
-		template <std::intmax_t T>
-			struct is_container <std::ratio<T, T>> : std::true_type { };
 		;
 
 		template <typename T>

@@ -133,7 +133,7 @@ namespace nott
 
 		/** @name arithmetic cast */
 		template<class to_type, class from_type>
-			static inline typename std::enable_if<std::is_arithmetic<from_type>::value, from_type>
+			inline typename std::enable_if<std::is_arithmetic<from_type>::value, from_type>
 			::type to_numeric(const from_type &value)
 			{
 				return static_cast<to_type>(value);
