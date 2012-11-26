@@ -50,7 +50,7 @@ namespace nott
 			template <typename ...T>
 				struct make_index <0, T ...> final
 				{
-					typedef std::tuple<T ...> type;
+					using type = std::tuple<T ...>;
 				}
 			;
 		}
