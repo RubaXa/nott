@@ -26,10 +26,10 @@ namespace nott
 {
 	namespace utils
 	{
-		class url final
+		class url
 		{
 			public:
-				url() {};
+				 url() {};
 				~url() {};
 
 				std::string encode(const std::string &, const bool & = false) const;
