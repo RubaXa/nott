@@ -58,11 +58,11 @@ namespace nott
 				{
 					T result;
 
-					auto it  = std::make_tuple(std::get<index>(list).begin() ...);
+					auto begin  = std::make_tuple(std::get<index>(list).begin() ...);
 					auto end = std::make_tuple(std::get<index>(list).end() ...);
 
-					while (std::max<bool>({std::get<index>(it) == std::get<index>(end) ...}) == false)
-						result.emplace_back(*std::get<index>(it)++ ...);
+					while (std::max<bool>({std::get<index>(begin) != std::get<index>(end) ...}))
+						result.emplace_back(*std::get<index>(begin)++ ...);
 
 					return result;
 			}
