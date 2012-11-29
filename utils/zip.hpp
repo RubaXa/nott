@@ -3,8 +3,6 @@
 /*
 * nott::utils::zip
 *
-* This class prevents the copying any class derived from this one
-*
 * Example:
 *	std::list<std::string> list1 = {"1", "2", "3"};
 *	std::set<int> list2 = {4, 5, 6};
@@ -17,7 +15,6 @@
 *	Explicity:
 *	std::__1::tuple<int, int> data = list.front();
 *
-* @author: Alexander Guinness
 * @version: 0.0.1
 * @license: MIT
 * @date: 25/11/2012 21:05 PM
