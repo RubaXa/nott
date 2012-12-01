@@ -19,7 +19,9 @@
 #include <cctype>
 
 /*
-TODO: punycode
+TODO:
+punycode, host, hash, port, protocol, search, params, ip, icu, user, password, verify
+RFC 1630, RFC 1738, RFC 2396, RFC 3987 compliant
 */
 
 namespace nott
@@ -29,11 +31,11 @@ namespace nott
 		class url
 		{
 			public:
-				 url() {};
+				explicit url(const std::string &__url) : __url(__url) {};
 				~url() {};
 
-				std::string encode(const std::string &, const bool & = false) const;
-				std::string decode(const std::string &) const;
+				std::string encode(const bool & = false) const;
+				std::string decode() const;
 
 			private:
 				url(const url&);
@@ -42,10 +44,16 @@ namespace nott
 				char unhex(const char &value) const noexcept {
 					return std::isdigit(value) ? value - '0' : std::tolower(value) - 'a' + 10;
 				}
+
+				enum struct components {
+					SCHEME, USERNAME, PASSWORD, HOST, PORT, PATH, QUERY, REF
+				};
+
+			const std::string __url;
 		};
 
 		/*
-		  RFC1630, RFC1738, RFC2396
+		  RFC 1630, RFC 1738, RFC 2396, RFC 3987
 
 		  RFC 3986 section 2.2 Reserved Characters:
 		  	!, *, ', (, ), ;, :, @, &, =, +, $, , /, ?, #, [, ]
@@ -66,7 +74,7 @@ namespace nott
 		*/
 
 		/** url::encode */
-		std::string url::encode (const std::string &value, const bool &plus) const
+		std::string url::encode(const bool &plus) const
 		{
 			const std::string except("-_.~");
 
@@ -74,9 +82,9 @@ namespace nott
 			char buffer[reserve];
 
 			std::string result;
-			std::string::const_iterator i = value.begin();
+			std::string::const_iterator i = this->__url.begin();
 
-			while (i != value.end()) {
+			while (i != this->__url.end()) {
 				if (std::isalnum(*i) || ~except.find(*i))
 					result.push_back(*i);
 
@@ -94,13 +102,14 @@ namespace nott
 			return result;
 		};
 
+
 		/** url::decode */
-		std::string url::decode (const std::string &value) const
+		std::string url::decode() const
 		{
 			std::string result;
-			std::string::const_iterator i = value.begin();
+			std::string::const_iterator i = this->__url.begin();
 
-			while (i != value.end()) {
+			while (i != this->__url.end()) {
 				if (*i == '%' && isxdigit(*(i + 2))) {
 					result.push_back(this->unhex(*(i + 1)) << 4 | this->unhex(*(i + 2)));
 					i += 2;
