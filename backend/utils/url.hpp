@@ -24,7 +24,7 @@
 /*
 TODO:
 punycode, host, fragment, port, protocol, search, params, ip, icu, user, password, verify
-RFC 1630, RFC 1738, RFC 2396, RFC 3987 compliant
+RFC 1630, RFC 1738, RFC 2396, RFC 3986, RFC 3987 compliant
 */
 
 namespace nott
@@ -58,8 +58,6 @@ namespace nott
 
 				// RFC 3986
 				std::string scheme() const;
-				std::string host() const;
-				std::string authority() const;
 				std::string userinfo() const;
 		};
 
@@ -181,107 +179,6 @@ namespace nott
 
 			return result.str(0);
 		};
-
-		/**
-		 RFC 3986 3.2. Authority
-
-		 authority = [ userinfo "@" ] host [ ":" port ]
-
-		*/
-		std::string url::authority() const
-		{
-			const std::regex pattern("(^[a-z\\d\\.\\-\\+]+)://");
-
-			std::match_results<std::string::const_iterator> result;
-			std::regex_search(this->__url, result, pattern);
-
-			return result.str(1);
-		};
-
-
-		/**
-		 RFC 3986 3.2.2. Host
-
-		 host = IP-literal / IPv4address / reg-name
-
-		*/
-		std::string url::host() const
-		{
-			std::match_results<std::string::const_iterator> result;
-///, std::regex::extended
-			try {
-				const std::regex pattern("\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}", std::regex::ECMAScript);
-
-				std::regex_search(this->__url, result, pattern);
-			}
-			catch (const std::regex_error &error) {
-				std::cout << "regex_error caught: " << error.what() << '\n';
-			}
-
-			return result.str(0);
-		};
-
-
-/*
-
-http://tools.ietf.org/html/rfc5952
-
-'/^(?>(?>([a-f0-9]{1,4})(?>:(?1)){7}|(?!(?:.*[a-f0-9](?>:|$)){7,})((?1)(?>:(?1)){0,5})?::(?2)?)|(?>(?>(?1)(?>:(?1)){5}:|(?!(?:.*[a-f0-9]:){5,})(?3)?::(?>((?1)(?>:(?1)){0,3}):)?)?(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])(?>\.(?4)){3}))$/iD'
-
-*/
-
-
-// 		 host = IP-literal / IPv4address / reg-name
-
-//     IP-literal = "[" ( IPv6address / IPvFuture  ) "]"
-//     IPvFuture  = "v" 1*HEXDIG "." 1*( unreserved / sub-delims / ":" )
-//     reg-name    = *( unreserved / pct-encoded / sub-delims )
-/*
-
-IPv4address = dec-octet "." dec-octet "." dec-octet "." dec-octet
-
-      dec-octet   = DIGIT                 ; 0-9
-                  / %x31-39 DIGIT         ; 10-99
-                  / "1" 2DIGIT            ; 100-199
-                  / "2" %x30-34 DIGIT     ; 200-249
-                  / "25" %x30-35          ; 250-255
-
-IPv6address =                            6( h16 ":" ) ls32
-                  /                       "::" 5( h16 ":" ) ls32
-                  / [               h16 ] "::" 4( h16 ":" ) ls32
-                  / [ *1( h16 ":" ) h16 ] "::" 3( h16 ":" ) ls32
-                  / [ *2( h16 ":" ) h16 ] "::" 2( h16 ":" ) ls32
-                  / [ *3( h16 ":" ) h16 ] "::"    h16 ":"   ls32
-                  / [ *4( h16 ":" ) h16 ] "::"              ls32
-                  / [ *5( h16 ":" ) h16 ] "::"              h16
-                  / [ *6( h16 ":" ) h16 ] "::"
-
-      ls32        = ( h16 ":" h16 ) / IPv4address
-                  ; least-significant 32 bits of address
-
-      h16         = 1*4HEXDIG
-                  ; 16 bits of address represented in hexadecimal
-
-*/
-
-
-
-	/*
-		[\\w\\d.~-]   - unreserved
-		%[a-f\\d]{2}  - pct-encoded
-		[!$&'()*+,;=] - sub-delims
-	*/
-
-
-//^[a-z\d\.\-\+]+://[\w\d\.~\-]+:[\w\d\.~\-]+@
-
-
-		/*std::map<std::string, std::string> comp = {
-			{"foo", "1"},
-		};
-*/
-
-
 	}
 }
 
